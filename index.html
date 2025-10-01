@@ -74,12 +74,18 @@
       window.open(url, '_blank', 'noopener,noreferrer');
     }
 
-    // Registrar o NOVO SW
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw-v3.js')
-          .then(() => console.log('SW v3 registrado'))
-          .catch(()=>{});
+<script>
+  // Registrar o SW sem cache
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw-nocache.js')
+        .then(() => console.log('SW no-cache registrado'))
+        .catch(()=>{});
+
+    });
+  }
+</script>
+
       });
     }
   </script>

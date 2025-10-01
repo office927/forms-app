@@ -58,6 +58,10 @@
   </div>
 
   <script>
+    // Versão log pra debug
+    console.log("Forms app v3");
+
+    // Links reais
     const links = {
       abastecimento: "https://forms.office.com/r/B2WLaTJ4c7",
       compras: "https://forms.office.com/r/T68qe82xpc",
@@ -65,13 +69,17 @@
       form4: "https://seu-link-do-form-4"
     };
 
+    // Sem checagem de placeholder
     function openLink(url){
       window.open(url, '_blank', 'noopener,noreferrer');
     }
 
+    // Registrar o NOVO SW
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(()=>{});
+        navigator.serviceWorker.register('./sw-v3.js')
+          .then(() => console.log('SW v3 registrado'))
+          .catch(()=>{});
       });
     }
   </script>

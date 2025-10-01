@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formulários de Campo</title>
+  <meta name="theme-color" content="#1f8ef1"/>
+  <link rel="manifest" href="./manifest.json" />
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--accent:#1f8ef1}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue";background:var(--bg);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:32px}
+    .wrap{width:min(520px,100%);text-align:center}
+    header{margin-bottom:18px}
+    h1{margin:0;font-size:22px;color:#0b2340}
+    p.sub{color:#56687a;margin:6px 0 18px;font-size:14px}
+    .grid{display:grid;gap:12px}
+    button.btn{all:unset;display:block;background:var(--card);padding:16px;border-radius:14px;box-shadow:0 8px 26px rgba(13,38,63,0.08);cursor:pointer;border:1px solid rgba(11,35,64,0.06);text-align:left;transition:transform .04s ease}
+    button.btn:active{transform:scale(0.98)}
+    .btn h2{margin:0;font-size:16px;color:#0b2340}
+    .btn small{display:block;margin-top:6px;color:#6b7a8a;font-size:13px}
+    .footer{margin-top:18px;color:#8897a6;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Formulários de Campo</h1>
+      <p class="sub">Toque no formulário — abre direto no navegador. (Você pode instalar este app na tela inicial.)</p>
+    </header>
+
+    <div class="grid">
+      <button class="btn" onclick="openLink(links.abastecimento)">
+        <h2>Abastecimento de Veículos</h2>
+        <small>Formulário para reabastecer veículo</small>
+      </button>
+
+      <button class="btn" onclick="openLink(links.compras)">
+        <h2>Compras</h2>
+        <small>Solicitações e notas de compra</small>
+      </button>
+
+      <button class="btn" onclick="openLink(links.troca)">
+        <h2>Troca de Óleo</h2>
+        <small>Registro de manutenção</small>
+      </button>
+
+      <button class="btn" onclick="openLink(links.form4)">
+        <h2>Formulário 4</h2>
+        <small>Reservado</small>
+      </button>
+    </div>
+
+    <div class="footer">
+      Dica: Android → Chrome menu → “Adicionar à tela inicial”.<br>
+      iPhone → Safari → Compartilhar → “Adicionar à Tela de Início”.
+    </div>
+  </div>
+
+  <script>
+    const links = {
+      abastecimento: "https://forms.office.com/r/B2WLaTJ4c7",
+      compras: "https://forms.office.com/r/T68qe82xpc",
+      troca: "https://forms.office.com/r/xGNWqEYrP8",
+      form4: "https://seu-link-do-form-4"
+    };
+
+    function openLink(url){
+      if(!url || url.startsWith("https://seu-link-")){
+        alert("Este formulário ainda não foi configurado.");
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(()=>{});
+      });
+    }
+  </script>
+</body>
+</html>

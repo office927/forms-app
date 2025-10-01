@@ -1,8 +1,9 @@
-const CACHE = 'forms-cache-v2'; // versão nova para forçar atualização
+// versão 3 — limpa geral
+const CACHE = 'forms-cache-v3';
 const urls = ['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(urls)));
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(urls)));
   self.skipWaiting(); // ativa já
 });
 
@@ -16,5 +17,5 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(r=> r || fetch(e.request)));
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
